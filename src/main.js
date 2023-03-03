@@ -25,7 +25,9 @@ overlay.addEventListener("click", closeBar);
 // ==================
 btn.addEventListener("click", function () {
   document.getElementById("main-menu").style.left = "0";
+  document.body.classList = "open";
 });
 closeMenu.addEventListener("click", function () {
   document.getElementById("main-menu").style.left = "-500px";
+  document.body.classList.remove("open");
 });
