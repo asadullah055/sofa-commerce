@@ -26,8 +26,15 @@ overlay.addEventListener("click", closeBar);
 btn.addEventListener("click", function () {
   document.getElementById("main-menu").style.left = "0";
   document.body.classList = "open";
+  overlay.classList.add("overlay");
 });
 closeMenu.addEventListener("click", function () {
   document.getElementById("main-menu").style.left = "-500px";
   document.body.classList.remove("open");
+  overlay.classList.remove("overlay");
+});
+overlay.addEventListener("click", function () {
+  document.getElementById("main-menu").style.left = "-500px";
+  document.body.classList.remove("open");
+  overlay.classList.remove("overlay");
 });
