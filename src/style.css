@@ -54,7 +54,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  /* width: 1240px; */
+  max-width: 1280px;
 }
 .navbar-nav {
   display: flex;
@@ -107,6 +107,7 @@ body {
   position: relative;
   padding: 5px;
   cursor: pointer;
+  z-index: 10;
 }
 .cartAmount {
   color: #ffffff;
@@ -350,6 +351,9 @@ body {
 }
 .w-25 {
   width: 25%;
+}
+.w-50 {
+  width: 50%;
 }
 .main-footer {
   width: 90%;

@@ -19,7 +19,9 @@ let closeBar = function () {
   overlay.classList.remove("overlay");
 };
 cart.addEventListener("click", openBar);
-sideBox.addEventListener("click", openBar);
+if (sideBox) {
+  sideBox.addEventListener("click", openBar);
+}
 closeBtn.addEventListener("click", closeBar);
 overlay.addEventListener("click", closeBar);
 // ==================
