@@ -5,53 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="test.css" />
   </head>
   <body>
-    <div class="main-footer">
-      <div class="footer-titles">
-        <p class="title">Our shop</p>
-        <p class="title">Top Sales Category</p>
-        <p class="title">My Account</p>
-        <p class="title">Our Location</p>
-      </div>
-      <div class="footer-lists">
-        <!-- =======Our shop====== -->
-        <div class="w-100">
-          <ul class="f-ul">
-            <li class="f-list"><a class="f-link" href="#">About Us</a></li>
-            <li class="f-list"><a class="f-link" href="#">Contact Us</a></li>
-            <li class="f-list"><a class="f-link" href="#">FAQ</a></li>
-            <li class="f-list"><a class="f-link" href="#">Our Offer</a></li>
-          </ul>
-        </div>
-        <!-- =======Top Sales Category====== -->
-        <div class="w-100">
-          <ul class="f-ul">
-            <li class="f-list"><a class="f-link" href="#">About Us</a></li>
-            <li class="f-list"><a class="f-link" href="#">Contact Us</a></li>
-            <li class="f-list"><a class="f-link" href="#">FAQ</a></li>
-            <li class="f-list"><a class="f-link" href="#">Our Offer</a></li>
-          </ul>
-        </div>
-        <!-- =======My Account====== -->
-        <div class="w-100">
-          <ul class="f-ul">
-            <li class="f-list"><a class="f-link" href="#">About Us</a></li>
-            <li class="f-list"><a class="f-link" href="#">Contact Us</a></li>
-            <li class="f-list"><a class="f-link" href="#">FAQ</a></li>
-            <li class="f-list"><a class="f-link" href="#">Our Offer</a></li>
-          </ul>
-        </div>
-        <!-- =======Our Location====== -->
-        <div class="w-100">
-          <ul class="f-ul location">
-            <li class="f-list">04/5 Block- B, Dhanmondi, Dhaka</li>
-            <li class="f-list">Tell: +88 127 8784</li>
+    <div class="container">
+      <h2>Your favorite thing in the world:</h2>
 
-            <li class="f-list">Email: example@gmail.com</li>
-          </ul>
-        </div>
-      </div>
+      <ul>
+        <li>
+          <label for="f-option">Pizza</label>
+          <input type="radio" id="f-option" name="selector" />
+
+          <div class="check"></div>
+        </li>
+
+        <li>
+          <label for="s-option">Bacon</label>
+          <input type="radio" id="s-option" name="selector" />
+
+          <div class="check"><div class="inside"></div></div>
+        </li>
+
+        <li>
+          <label for="t-option">Cats</label>
+          <input type="radio" id="t-option" name="selector" />
+
+          <div class="check"><div class="inside"></div></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="signature">
+      <p>
+        Made with <i class="much-heart"></i> by
+        <a href="https://codepen.io/AngelaVelasquez">Angela Velasquez</a>
+      </p>
     </div>
   </body>
 </html>
