@@ -128,7 +128,7 @@ h2.shipping {
   align-items: center;
   position: relative;
 }
-
+#express-d,
 input[type="radio"] {
   display: none;
 }

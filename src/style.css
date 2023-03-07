@@ -121,6 +121,56 @@ body {
   right: -5px;
 }
 /* nav area :end */
+/* ====================products============= */
+.products-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 15px;
+}
+.product-section {
+  background-color: #f7f7f7;
+  /* background-color: #da2121; */
+}
+.products {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.card {
+  background-color: #fff;
+  border: 1px solid #ced4e163;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.gap-15 {
+  gap: 15px;
+}
+.card-img {
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.card-img:hover {
+  transform: scale(1.1);
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+.card-price-button {
+  justify-content: space-between;
+  padding: 10px 5px;
+}
+.bg-green {
+  background-color: #3bb77e;
+  border: none !important;
+}
+
+.products-wrapper .text-white {
+  color: #fff !important;
+}
+/* ====================products============= */
+
 /* sidebar */
 .overlay {
   width: 100%;
@@ -216,10 +266,12 @@ body {
   border-bottom: 1px solid #ced4e1a6;
 }
 .details {
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 95%;
+  width: 100%;
+  flex-wrap: wrap;
 }
 .details .cart-tile {
   font-size: 14px;
@@ -423,6 +475,9 @@ body {
   display: none;
 }
 @media only screen and (max-width: 1024px) {
+  .products-wrapper {
+    grid-template-columns: repeat(4, auto);
+  }
   .footer-top {
     display: none;
   }
@@ -450,7 +505,7 @@ body {
   .main-menu {
     position: absolute;
     top: 0px;
-    left: -500px;
+    left: -1300px;
     /* border: 2px solid #010f09; */
     background-color: #fff;
     height: 100vh;
@@ -458,6 +513,9 @@ body {
     z-index: 1000;
     display: block;
     transition: 0.5s;
+  }
+  .products-wrapper {
+    grid-template-columns: repeat(3, auto);
   }
   .side-menu-header {
     background-color: #3bb77e;
@@ -523,6 +581,10 @@ body {
   }
 }
 @media only screen and (max-width: 600px) {
+  .products-wrapper {
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+  }
   .mw-50 {
     width: calc(100% / 2);
   }
