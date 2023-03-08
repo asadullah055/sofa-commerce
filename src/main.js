@@ -6,9 +6,13 @@ const overlay = document.getElementById("overlay");
 const btn = document.getElementById("btn");
 const closeMenu = document.getElementById("closeBtn");
 const shop = document.getElementById("products-wrapper");
+const cartItemsSum = document.getElementById("cart-items-sum");
+const processAmount = document.getElementById("process-amount");
+const shoppingCart = document.getElementById("shopping-cart");
+const cShoppingCart = document.getElementById("c-shopping-cart");
 // =========add function ==========
 const add = () => {
-  document.body.classList.add = "open";
+  document.body.classList.add("open");
   overlay.classList.add("overlay");
 };
 // =========close function ==========
@@ -48,34 +52,130 @@ overlay.addEventListener("click", closeBar);
 closeMenu.addEventListener("click", menuClose);
 overlay.addEventListener("click", menuClose);
 
+let basket = JSON.parse(localStorage.getItem("data")) || [];
 let generateCart = () => {
-  shop.innerHTML = sofaData
-    .map((x) => {
-      let { sku, name, price, img, id } = x;
-      return `
-    <div id='card-${sku}' class="card">
+  if (shop) {
+    shop.innerHTML = sofaData
+      .map((x) => {
+        let { name, price, img, id } = x;
+        let search = basket.find((x) => x.id === id) || [];
+        return `
+    <div id='card-${id}' class="card">
     <img height="200" class="card-img p-5" src=${img} alt="" />
     <div class="cart-body p-10">
       <p class="card-title p-5">${name}</p>
       <div class="d-flex card-price-button">
         <h3>$${price}</h3>
         <div class="bg-green increase-decrease-button">
-          <i onclick='decrement()' class="fa-solid text-white fa-minus"></i>
-          <div id=${sku} class="quantity text-white">01</div>
-          <i onclick="increment(${sku})" class="fa-solid text-white fa-plus"></i>
+          <i onclick='decrement(${id})' class="fa-solid text-white fa-minus"></i>
+          <div id=${id} class="quantity text-white">${
+          search.item === undefined ? 0 : search.item
+        }</div>
+          <i onclick="increment(${id})" class="fa-solid text-white fa-plus"></i>
         </div>
       </div>
     </div>
   </div>
     `;
-    })
-    .join("");
+      })
+      .join("");
+  }
 };
 generateCart();
 
-let increment = (sku) => {
-  console.log(sku);
+let generateCartItem = () => {
+  if (shoppingCart) {
+    shoppingCart.innerHTML = basket
+      .map((x) => {
+        let { id, item } = x;
+        let search = sofaData.find((y) => y.id === id) || [];
+        let { name, price, img } = search;
+        return `  
+    <div class="cart-items">
+    <img width="100" height="100" src=${img} alt="" />
+    <div class="details">
+      <h3 class="cart-tile">${name}</h3>
+      <p>Item price $${price}</p>
+      <div class="numbers">
+        <h3>$ ${item * price}</h3>
+        <div class="increase-decrease-button">
+          <i onclick='decrement(${id})' class="fa-solid fa-minus"></i>
+          <div id=${id} class="quantity">${item === undefined ? 0 : item}</div>
+          <i onclick="increment(${id})" class="fa-solid fa-plus"></i>
+        </div>
+        <i class="fa-solid fa-trash-can"></i>
+      </div>
+    </div>
+  </div>
+    `;
+      })
+      .join("");
+  }
 };
-let decrement = (sku) => {
-  console.log(sku);
+generateCartItem();
+let increment = (id) => {
+  let selectItem = id;
+  let search = basket.find((x) => x.id === selectItem.id);
+  let prod = sofaData.find((y) => y.id === selectItem.id);
+
+  if (search === undefined) {
+    basket.push({
+      id: selectItem.id,
+      item: 1,
+      product: [prod],
+    });
+  } else {
+    if (search.item === prod.stock) {
+      alert("This product out of stock");
+      return;
+    } else search.item += 1;
+  }
+
+  update(selectItem.id);
+  totalAmount();
+  localStorage.setItem("data", JSON.stringify(basket));
+  // console.log(basket);
 };
+let decrement = (id) => {
+  let selectItem = id;
+  let search = basket.find((x) => x.id === selectItem.id);
+
+  if (search === undefined) return;
+  else if (search.item === 0) return;
+  else {
+    search.item -= 1;
+  }
+  update(selectItem.id);
+  totalAmount();
+  basket = basket.filter((x) => x.item !== 0);
+  localStorage.setItem("data", JSON.stringify(basket));
+};
+let update = (id) => {
+  let search = basket.find((x) => x.id === id) || [];
+  document.getElementById(id).innerHTML = search.item;
+  calculate();
+};
+let calculate = () => {
+  let itemAmount = document.getElementById("itemAmount");
+  let cartItems = document.getElementById("cart-items");
+  let sum = basket.map((x) => x.item).reduce((a, b) => a + b, 0);
+  if (cartItems) {
+    cartItems.innerHTML = sum < 10 ? "0" + sum : sum;
+  }
+  itemAmount.innerHTML = sum < 10 ? "0" + sum : sum;
+};
+let totalAmount = () => {
+  let amount = basket
+    .map((x) => {
+      let search = sofaData.find((a) => a.id === x.id) || [];
+      // console.log(search);
+      return x.item * search.price;
+    })
+    .reduce((a, b) => a + b, 0);
+  if (cartItemsSum) {
+    cartItemsSum.innerHTML = amount;
+  }
+  processAmount.innerHTML = amount;
+};
+calculate();
+totalAmount();

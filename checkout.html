@@ -65,7 +65,7 @@
             </button>
             <div id="cart" class="cart">
               <i class="bi bi-cart-check"></i>
-              <div class="cartAmount" id="cartAmount">00</div>
+              <div class="cartAmount" id="itemAmount">00</div>
             </div>
           </div>
         </div>
@@ -90,30 +90,15 @@
           </div>
         </div>
         <!-- ======== cart items ==== -->
-        <div class="shopping-cart">
-          <div class="cart-items">
-            <img width="100" height="100" src="image/e02.png" alt="" />
-            <div class="details">
-              <h3 class="cart-tile">This is title</h3>
-              <p>Item price $50</p>
-              <div class="numbers">
-                <h3>$ 128</h3>
-                <div class="increase-decrease-button">
-                  <i class="fa-solid fa-minus"></i>
-                  <div class="quantity">01</div>
-                  <i class="fa-solid fa-plus"></i>
-                </div>
-                <i class="fa-solid fa-trash-can"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="shopping-cart" class="shopping-cart"></div>
         <!-- ===== calculate ==== -->
         <div class="process-wrapper">
           <div class="process-to">
-            <a href="#">
+            <a href="checkout.html">
               <div>Proceed To Checkout</div>
-              <div class="process-amount">$562</div>
+              <div class="process-amount">
+                $<span id="process-amount"></span>
+              </div>
             </a>
           </div>
         </div>
@@ -345,88 +330,7 @@
         </form>
         <div class="cart-checkout">
           <h3 class="summary">Order Summary</h3>
-          <div class="c-shopping-cart">
-            <div class="cart-items">
-              <img width="100" height="100" src="image/e02.png" alt="" />
-              <div class="details">
-                <h3 class="cart-tile">This is title</h3>
-                <p>Item price $50</p>
-                <div class="numbers">
-                  <h3>$ 128</h3>
-                  <div class="increase-decrease-button">
-                    <i class="fa-solid fa-minus"></i>
-                    <div class="quantity">01</div>
-                    <i class="fa-solid fa-plus"></i>
-                  </div>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div>
-            <div class="cart-items">
-              <img width="100" height="100" src="image/e02.png" alt="" />
-              <div class="details">
-                <h3 class="cart-tile">This is title</h3>
-                <p>Item price $50</p>
-                <div class="numbers">
-                  <h3>$ 128</h3>
-                  <div class="increase-decrease-button">
-                    <i class="fa-solid fa-minus"></i>
-                    <div class="quantity">01</div>
-                    <i class="fa-solid fa-plus"></i>
-                  </div>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div>
-            <div class="cart-items">
-              <img width="100" height="100" src="image/e02.png" alt="" />
-              <div class="details">
-                <h3 class="cart-tile">This is title</h3>
-                <p>Item price $50</p>
-                <div class="numbers">
-                  <h3>$ 128</h3>
-                  <div class="increase-decrease-button">
-                    <i class="fa-solid fa-minus"></i>
-                    <div class="quantity">01</div>
-                    <i class="fa-solid fa-plus"></i>
-                  </div>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div>
-            <div class="cart-items">
-              <img width="100" height="100" src="image/e02.png" alt="" />
-              <div class="details">
-                <h3 class="cart-tile">This is title</h3>
-                <p>Item price $50</p>
-                <div class="numbers">
-                  <h3>$ 128</h3>
-                  <div class="increase-decrease-button">
-                    <i class="fa-solid fa-minus"></i>
-                    <div class="quantity">01</div>
-                    <i class="fa-solid fa-plus"></i>
-                  </div>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div>
-            <div class="cart-items">
-              <img width="100" height="100" src="image/e02.png" alt="" />
-              <div class="details">
-                <h3 class="cart-tile">This is title</h3>
-                <p>Item price $50</p>
-                <div class="numbers">
-                  <h3>$ 128</h3>
-                  <div class="increase-decrease-button">
-                    <i class="fa-solid fa-minus"></i>
-                    <div class="quantity">01</div>
-                    <i class="fa-solid fa-plus"></i>
-                  </div>
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div id="c-shopping-cart" class="c-shopping-cart"></div>
           <div class="d-flex p-10 coupon-area">
             <input
               class="p-10 border-5 w-100 cop-input"
@@ -523,7 +427,7 @@
       <!-- ==== main footer start=== -->
       <hr class="hr" />
     </footer>
-
+    <script src="src/Data.js"></script>
     <script src="src/main.js"></script>
   </body>
 </html>

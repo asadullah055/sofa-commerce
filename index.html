@@ -72,7 +72,7 @@
             </button>
             <div id="cart" class="cart">
               <i class="bi bi-cart-check"></i>
-              <div class="cartAmount" id="cartAmount">00</div>
+              <div class="cartAmount" id="itemAmount">00</div>
             </div>
           </div>
         </div>
@@ -105,30 +105,15 @@
           </div>
         </div>
         <!-- ======== cart items ==== -->
-        <div class="shopping-cart">
-          <div class="cart-items">
-            <img width="100" height="100" src="image/e02.png" alt="" />
-            <div class="details">
-              <h3 class="cart-tile">This is title</h3>
-              <p>Item price $50</p>
-              <div class="numbers">
-                <h3>$ 128</h3>
-                <div class="increase-decrease-button">
-                  <i class="fa-solid fa-minus"></i>
-                  <div class="quantity">01</div>
-                  <i class="fa-solid fa-plus"></i>
-                </div>
-                <i class="fa-solid fa-trash-can"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="shopping-cart" class="shopping-cart"></div>
         <!-- ===== calculate ==== -->
         <div class="process-wrapper">
           <div class="process-to">
             <a href="checkout.html">
               <div>Proceed To Checkout</div>
-              <div class="process-amount">$562</div>
+              <div class="process-amount">
+                $<span id="process-amount"></span>
+              </div>
             </a>
           </div>
         </div>
@@ -138,9 +123,9 @@
     <div id="side-box" class="side-box">
       <div class="bag">
         <i class="fa-solid fa-basket-shopping"></i>
-        <p>4 items</p>
+        <p><span id="cart-items">0</span> items</p>
       </div>
-      <h3>$ 100</h3>
+      <h3>$ <span id="cart-items-sum">00</span></h3>
     </div>
     <!-- ============footer area start======== -->
 

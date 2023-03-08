@@ -1,5 +1,6 @@
 let sofaData = [
   {
+    id: "a1",
     sku: "A9AF4FD",
     name: "Settee Sofa",
     categories: "Big Sofa",
@@ -10,6 +11,7 @@ let sofaData = [
     img: "image/01.png",
   },
   {
+    id: "a2",
     sku: "A9AFFF5",
     name: "Chesterfield",
     categories: "Big Sofa",
@@ -20,6 +22,7 @@ let sofaData = [
     img: "image/02.png",
   },
   {
+    id: "a3",
     sku: "A10ABFF5",
     name: "Loveseat",
     categories: "Big Sofa",
@@ -30,6 +33,7 @@ let sofaData = [
     img: "image/03.png",
   },
   {
+    id: "a4",
     sku: "A10ABG5",
     name: "Chaise Lounge",
     categories: "Big Sofa",
@@ -40,6 +44,7 @@ let sofaData = [
     img: "image/04.png",
   },
   {
+    id: "a5",
     sku: "A115FF5",
     name: "Cabriole",
     categories: "Big Sofa",
@@ -50,6 +55,7 @@ let sofaData = [
     img: "image/05.png",
   },
   {
+    id: "a6",
     sku: "A10AZVF5",
     name: "Daybed",
     categories: "Big Sofa",
@@ -60,6 +66,7 @@ let sofaData = [
     img: "image/06.png",
   },
   {
+    id: "a7",
     sku: "A10DBFM5",
     name: "Mid-century Modern",
     categories: "Big Sofa",
@@ -70,6 +77,7 @@ let sofaData = [
     img: "image/07.png",
   },
   {
+    id: "a8",
     sku: "A10A15GE",
     name: "Divan Sofa",
     categories: "Big Sofa",
@@ -80,6 +88,7 @@ let sofaData = [
     img: "image/08.png",
   },
   {
+    id: "a9",
     sku: "A10A12GE",
     name: "Recamier",
     categories: "Big Sofa",
@@ -90,6 +99,7 @@ let sofaData = [
     img: "image/09.png",
   },
   {
+    id: "a10",
     sku: "A10A19RE",
     name: "Sectional Sofa",
     categories: "Big Sofa",
@@ -100,6 +110,7 @@ let sofaData = [
     img: "image/10.png",
   },
   {
+    id: "a11",
     sku: "A10A11WE",
     name: "Bridgewater Sofa",
     categories: "Big Sofa",
@@ -110,6 +121,7 @@ let sofaData = [
     img: "image/11.png",
   },
   {
+    id: "a12",
     sku: "A10A13PE",
     name: "Rattan Sofa",
     categories: "Big Sofa",
@@ -120,6 +132,7 @@ let sofaData = [
     img: "image/12.png",
   },
   {
+    id: "a13",
     sku: "A10B01RE",
     name: "Tuxedo Sofa",
     categories: "Big Sofa",
@@ -130,6 +143,7 @@ let sofaData = [
     img: "image/13.png",
   },
   {
+    id: "a14",
     sku: "A10B02RE",
     name: "Lawson Sofa",
     categories: "Big Sofa",
@@ -140,12 +154,13 @@ let sofaData = [
     img: "image/14.png",
   },
   {
+    id: "a15",
     sku: "A10B05RE",
     name: "Camelback Sofa",
     categories: "Big Sofa",
     price: 120,
     discountPrice: 110,
-    stock: 20,
+    stock: 200,
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus quia perspiciatis non vero autem unde veritatis quasi, quas ab eaque atque dolores reprehenderit quidem dolorum!",
     img: "image/15.png",
   },
