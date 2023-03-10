@@ -63,6 +63,7 @@
             <button id="btn" class="btn">
               <i class="fa-solid fa-bars"></i>
             </button>
+
             <div id="cart" class="cart">
               <i class="bi bi-cart-check"></i>
               <div class="cartAmount" id="itemAmount">00</div>
@@ -155,25 +156,25 @@
             <div class="d-flex">
               <div class="w-50 mw-100 p-10">
                 <p class="text">Division</p>
-                <select class="w-100 select" id="division">
+                <select class="w-100 select" id="division1">
                   <option value="">-- Select Division --</option>
                 </select>
               </div>
               <div class="w-50 mw-100 p-10">
                 <p class="text">District</p>
-                <select class="w-100 select" id="district">
+                <select class="w-100 select" id="district1">
                   <option value="">-- Select District--</option>
                 </select>
               </div>
               <div class="w-50 mw-100 p-10">
                 <p class="text">Upazila</p>
-                <select class="w-100 select" id="upazila">
+                <select class="w-100 select" id="upazila1">
                   <option value="">-- Select Upazila --</option>
                 </select>
               </div>
               <div class="w-50 mw-100 p-10">
                 <p class="text">Union/ Pourosova</p>
-                <select class="w-100 select" id="union">
+                <select class="w-100 select" id="union1">
                   <option value="">-- Select Union --</option>
                 </select>
               </div>
@@ -328,9 +329,11 @@
             </div>
           </div>
         </form>
+        <!-- ===================================================== -->
         <div class="cart-checkout">
           <h3 class="summary">Order Summary</h3>
-          <div id="c-shopping-cart" class="c-shopping-cart"></div>
+          <div id="summary-cart" class="c-shopping-cart"></div>
+          <div id="empty" class="c-shopping-cart"></div>
           <div class="d-flex p-10 coupon-area">
             <input
               class="p-10 border-5 w-100 cop-input"
@@ -342,14 +345,14 @@
           <div class="sub-calculate">
             <div class="d-flex sub-text">
               <span>Subtotal</span>
-              <span class="ml-auto">$55</span>
+              <span class="ml-auto">$<span id="subtotal"></span></span>
             </div>
             <div class="d-flex sub-text">
               <span>Shipping Cost</span>
               <span class="ml-auto">$00</span>
             </div>
             <div class="d-flex sub-text">
-              <span>Delivery Cost</span>
+              <span>Discount</span>
               <span class="ml-auto color-orange">$55</span>
             </div>
           </div>
@@ -427,7 +430,9 @@
       <!-- ==== main footer start=== -->
       <hr class="hr" />
     </footer>
+    <script src="src/geo.js"></script>
     <script src="src/Data.js"></script>
-    <script src="src/main.js"></script>
+    <script src="src/cart.js"></script>
+    <!-- <script src="src/main.js"></script> -->
   </body>
 </html>

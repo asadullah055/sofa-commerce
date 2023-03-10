@@ -224,7 +224,7 @@ input[type="checkbox"]:checked {
 .c-shopping-cart {
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 350px;
+  /* height: 350px; */
   padding-top: 15px;
 }
 .c-shopping-cart::-webkit-scrollbar {

@@ -1,11 +1,10 @@
+let basket = JSON.parse(localStorage.getItem("data")) || [];
 const sidebar = document.getElementById("sidebar");
 const cart = document.getElementById("cart");
 const closeBtn = document.getElementById("close-btn");
-const sideBox = document.getElementById("side-box");
 const overlay = document.getElementById("overlay");
 const btn = document.getElementById("btn");
 const closeMenu = document.getElementById("closeBtn");
-const shop = document.getElementById("products-wrapper");
 const cartItemsSum = document.getElementById("cart-items-sum");
 const processAmount = document.getElementById("process-amount");
 const shoppingCart = document.getElementById("shopping-cart");
@@ -45,45 +44,58 @@ btn.addEventListener("click", function () {
   add();
 });
 cart.addEventListener("click", openBar);
-if (sideBox) {
-  sideBox.addEventListener("click", openBar);
-}
+
 closeBtn.addEventListener("click", closeBar);
 overlay.addEventListener("click", closeBar);
 
 closeMenu.addEventListener("click", menuClose);
 overlay.addEventListener("click", menuClose);
 
-let basket = JSON.parse(localStorage.getItem("data")) || [];
-let generateShop = () => {
-  if (shop) {
-    shop.innerHTML = sofaData
+let calculate = () => {
+  let itemAmount = document.getElementById("itemAmount");
+  let cartItems = document.getElementById("cart-items");
+  let sum = basket.map((x) => x.item).reduce((a, b) => a + b, 0);
+  if (cartItems) {
+    cartItems.innerHTML = sum < 10 ? "0" + sum : sum;
+  }
+  itemAmount.innerHTML = sum < 10 ? "0" + sum : sum;
+};
+calculate();
+let generateCartItem = () => {
+  if (basket.length !== 0) {
+    summaryCart.innerHTML = basket
       .map((x) => {
-        let { name, price, img, id } = x;
-        let search = basket.find((x) => x.id === id) || [];
-        return `
-    <div id='card-${id}' class="card">
-    <img height="200" class="card-img p-5" src=${img} alt="" />
-    <div class="cart-body p-10">
-      <p class="card-title p-5">${name}</p>
-      <div class="d-flex card-price-button">
-        <h3>$${price}</h3>
-        <div class="bg-green increase-decrease-button">
-          <i onclick='decrement(${id})' class="fa-solid text-white fa-minus"></i>
-          <div id=${id} class="quantity text-white">${
-          search.item === undefined ? 0 : search.item
+        let { id, item } = x;
+        let search = sofaData.find((y) => y.id === id) || [];
+        let { name, price, img } = search;
+        return `  
+        <div class="cart-items">
+        <img width="100" height="100" src=${img} alt="" />
+        <div class="details">
+          <h3 class="cart-tile">${name}</h3>
+          <p>Item price $${price}</p>
+          <div class="numbers">
+            <h3>$ ${item * price}</h3>
+            <div class="increase-decrease-button">
+              <i onclick='decrement(${id})' class="fa-solid fa-minus"></i>
+              <div id=${id} class="quantity">${
+          item === undefined ? 0 : item
         }</div>
-          <i onclick="increment(${id})" class="fa-solid text-white fa-plus"></i>
+              <i onclick="increment(${id})" class="fa-solid fa-plus"></i>
+            </div>
+            <i onclick="removeItem(${id})" class="fa-solid fa-trash-can"></i>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-    `;
+        `;
       })
       .join("");
+  } else {
+    summaryCart.innerHTML = ``;
+    empty.innerHTML = `<h2> cart is empty</h2>`;
   }
 };
-generateShop();
+generateCartItem();
 let generate = () => {
   if (basket.length !== 0) {
     shoppingCart.innerHTML = basket
@@ -121,19 +133,18 @@ generate();
 let increment = (id) => {
   let selectItem = id;
   let search = basket.find((x) => x.id === selectItem.id);
-  let data = sofaData.find((y) => y.id === selectItem.id);
   if (search === undefined) {
     basket.push({
       id: selectItem.id,
       item: 1,
-      data: [data],
     });
   } else {
     search.item += 1;
   }
+
   update(selectItem.id);
   totalAmount();
-  generate();
+  generateCartItem();
   localStorage.setItem("data", JSON.stringify(basket));
 };
 let decrement = (id) => {
@@ -147,31 +158,15 @@ let decrement = (id) => {
   }
   update(selectItem.id);
   totalAmount();
-  generate();
   basket = basket.filter((x) => x.item !== 0);
+  generateCartItem();
   localStorage.setItem("data", JSON.stringify(basket));
 };
 let update = (id) => {
   let search = basket.find((x) => x.id === id) || [];
   document.getElementById(id).innerHTML = search.item;
   calculate();
-};
-let calculate = () => {
-  let itemAmount = document.getElementById("itemAmount");
-  let cartItems = document.getElementById("cart-items");
-  let sum = basket.map((x) => x.item).reduce((a, b) => a + b, 0);
-  if (cartItems) {
-    cartItems.innerHTML = sum < 10 ? "0" + sum : sum;
-  }
-  itemAmount.innerHTML = sum < 10 ? "0" + sum : sum;
-};
-let removeItem = (id) => {
-  let selectedItem = id;
-  basket = basket.filter((x) => x.id !== selectedItem.id);
-  generateCartItem();
-  calculate();
   totalAmount();
-  localStorage.setItem("data", JSON.stringify(basket));
 };
 let totalAmount = () => {
   let amount = basket
@@ -181,13 +176,69 @@ let totalAmount = () => {
       return x.item * search.price;
     })
     .reduce((a, b) => a + b, 0);
-  if (cartItemsSum) {
-    cartItemsSum.innerHTML = amount;
-  }
-  processAmount.innerHTML = amount;
-  if (subtotal) {
-    subtotal.innerHTML = amount;
-  }
+
+  subtotal.innerHTML = amount;
 };
-calculate();
+
+let removeItem = (id) => {
+  let selectedItem = id;
+  //   console.log(selectedItem.id);
+  basket = basket.filter((x) => x.id !== selectedItem.id);
+  generateCartItem();
+  totalAmount();
+  calculate();
+  localStorage.setItem("data", JSON.stringify(basket));
+};
 totalAmount();
+
+const division1 = document.getElementById("division1");
+const district1 = document.getElementById("district1");
+const upazila1 = document.getElementById("upazila1");
+const union1 = document.getElementById("union1");
+const union2 = document.getElementById("union");
+
+division.forEach((district) => {
+  division1.innerHTML += `<option id=${district.id} value=${district.name}>${district.name}</option>`;
+});
+// =====load district=====
+division1.addEventListener("change", function (e) {
+  const divisionId = this.options[this.selectedIndex].id;
+  district1.innerHTML = `<option value="">-- Select District--</option>`;
+  upazila1.innerHTML = `<option value="">-- Select Upazila--</option>`;
+  union1.innerHTML = `<option value="">-- Select Union --</option>`;
+  district
+    .filter((subdistrict) => subdistrict.division_id === divisionId)
+    .forEach((subdistrict) => {
+      district1.innerHTML += `<option id=${subdistrict.id} value=${subdistrict.name}>${subdistrict.name}</option>`;
+    });
+});
+// =====load upazila=====
+district1.addEventListener("change", function (e) {
+  const districtId = this.options[this.selectedIndex].id;
+
+  upazila1.innerHTML = `<option value="">-- Select Upazila--</option>`;
+  union1.innerHTML = `<option value="">-- Select Union --</option>`;
+  upazila
+    .filter((upazila) => upazila.district_id === districtId)
+    .forEach((upazila) => {
+      upazila1.innerHTML += `<option id=${upazila.id} value=${upazila.name}>${upazila.name}</option>`;
+    });
+});
+// =====load union=====
+upazila1.addEventListener("change", function (e) {
+  const upazilaId = this.options[this.selectedIndex].id;
+  union1.innerHTML = `<option value="">-- Select Union --</option>`;
+  union
+    .filter((union) => union.upazilla_id === upazilaId)
+    .forEach((union) => {
+      union1.innerHTML += `<option id=${union.id} value=${union.name}>${union.name}</option>`;
+    });
+});
+let checkbox = document.getElementById("check");
+checkbox.addEventListener("change", (e) => {
+  if (e.target.checked) {
+    union2.innerHTML = `<option id=${union1.id} value=${union1.value}>${union1.value}</option>`;
+  } else {
+    union2.innerHTML = `<option value="">-- Select Union --</option>`;
+  }
+});
