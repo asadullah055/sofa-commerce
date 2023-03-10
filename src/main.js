@@ -69,11 +69,14 @@ let generateShop = () => {
       <div class="d-flex card-price-button">
         <h3>$${price}</h3>
         <div class="bg-green increase-decrease-button">
-          <i onclick='decrement(${id})' class="fa-solid text-white fa-minus"></i>
-          <div id=${id} class="quantity text-white">${
-          search.item === undefined ? 0 : search.item
-        }</div>
-          <i onclick="increment(${id})" class="fa-solid text-white fa-plus"></i>
+          <i onclick="decrement('${id}')" class="fa-solid text-white fa-minus"></i>
+          <div id=${id} class="quantity text-white">
+          ${
+            search.item === undefined ? 0 : search.item
+          }
+         
+        </div>
+          <i onclick="increment('${id}')" class="fa-solid text-white fa-plus"></i>
         </div>
       </div>
     </div>
@@ -100,13 +103,14 @@ let generate = () => {
             <div class="numbers">
               <h3>$ ${item * price}</h3>
               <div class="increase-decrease-button">
-                <i onclick='decrement(${id})' class="fa-solid fa-minus"></i>
+                <i onclick="decrement('${id}')" class="fa-solid fa-minus"></i>
+                
                 <div id=${id} class="quantity">${
           item === undefined ? 0 : item
         }</div>
-                <i onclick="increment(${id})" class="fa-solid fa-plus"></i>
+                <i onclick="increment('${id}')" class="fa-solid fa-plus"></i>
               </div>
-              <i onclick="removeItem(${id})" class="fa-solid fa-trash-can"></i>
+              <i onclick="removeItem('${id}')" class="fa-solid fa-trash-can"></i>
             </div>
           </div>
         </div>
@@ -120,40 +124,47 @@ let generate = () => {
 generate();
 let increment = (id) => {
   let selectItem = id;
-  let search = basket.find((x) => x.id === selectItem.id);
-  let data = sofaData.find((y) => y.id === selectItem.id);
+  let search = basket.find((x) => x.id === selectItem);
+  let data = sofaData.find((y) => y.id === id);
+  // console.log(selectItem, search, data);
   if (search === undefined) {
     basket.push({
-      id: selectItem.id,
+      id: selectItem,
       item: 1,
       data: [data],
     });
   } else {
     search.item += 1;
   }
-  update(selectItem.id);
+  update(selectItem);
   totalAmount();
   generate();
-  localStorage.setItem("data", JSON.stringify(basket));
 };
 let decrement = (id) => {
+  
   let selectItem = id;
-  let search = basket.find((x) => x.id === selectItem.id);
-
-  if (search === undefined) return;
-  else if (search.item === 0) return;
+  let search = basket.find((x) => x.id === selectItem);
+  
+  if (search === undefined){
+     return
+    }
+  else if (search.item === 0) {
+    return
+  }
   else {
     search.item -= 1;
   }
-  update(selectItem.id);
+  update(selectItem);
   totalAmount();
   generate();
   basket = basket.filter((x) => x.item !== 0);
-  localStorage.setItem("data", JSON.stringify(basket));
+  // localStorage.setItem("data", JSON.stringify(basket));
 };
 let update = (id) => {
   let search = basket.find((x) => x.id === id) || [];
+  // console.log(search);
   document.getElementById(id).innerHTML = search.item;
+  localStorage.setItem("data", JSON.stringify(basket));
   calculate();
 };
 let calculate = () => {
@@ -165,14 +176,7 @@ let calculate = () => {
   }
   itemAmount.innerHTML = sum < 10 ? "0" + sum : sum;
 };
-let removeItem = (id) => {
-  let selectedItem = id;
-  basket = basket.filter((x) => x.id !== selectedItem.id);
-  generateCartItem();
-  calculate();
-  totalAmount();
-  localStorage.setItem("data", JSON.stringify(basket));
-};
+
 let totalAmount = () => {
   let amount = basket
     .map((x) => {
@@ -189,5 +193,5 @@ let totalAmount = () => {
     subtotal.innerHTML = amount;
   }
 };
-calculate();
-totalAmount();
+  calculate();
+  totalAmount();

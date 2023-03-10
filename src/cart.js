@@ -242,3 +242,13 @@ checkbox.addEventListener("change", (e) => {
     union2.innerHTML = `<option value="">-- Select Union --</option>`;
   }
 });
+
+
+// let removeItem = (id) => {
+//   let selectedItem = id;
+//   basket = basket.filter((x) => x.id !== selectedItem.id);
+//   // generateCartItem();
+//   calculate();
+//   totalAmount();
+//   localStorage.setItem("data", JSON.stringify(basket));
+// };
